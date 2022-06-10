@@ -2,29 +2,7 @@ spring:
   main:
     allow-bean-definition-overriding: true
   cloud:
-      #    discovery:
-#      enabled: true
-#    gateway:
-#      discovery:
-#        locator:
-#          enabled: false
-#          lower-case-service-id: true
-#      routes:
-#        - id: post-service
-#          uri: lb://post-service.postlocal.svc.cluster.local
-#          predicates:
-#            - Path=/api/v1/post/**
-#        locator:
-#          enabled: true
-##          lower
-##          lowerCaseServiceId: true
-          # url-expression: "'http://'+serviceId"
-#          lower-case-service-id: true
-
     kubernetes:
-#      discovery:
-#        all-namespaces: true
-#        enabled: true
       enabled: true
       reload:
         enabled: true
