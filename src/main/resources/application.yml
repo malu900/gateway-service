@@ -1,0 +1,46 @@
+logging:
+  level:
+    com:
+      example:
+        commentservice: DEBUG
+server:
+  port: 8086
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: gateway-service
+
+    #      discovery:
+#        locator:
+#          enabled: true
+#          lower-case-service-id: true
+#      routes:
+#        - id: post-service
+#          uri: http://comment-service:8082
+#          predicates:
+#            - Path=/comment/**
+#        - id: comment-service2
+#          uri: http://comment-service:8082
+#          predicates:
+#            - Path=/comment
+#          filters:
+#            - RewritePath=/api/v1/comment/?(?<segment>.*), /comment/$\{segment}
+          #          lower
+          #          lowerCaseServiceId: true
+#          url-expression: "'http://'+serviceId"
+#          lower-case-service-id: true
+#      routes:
+#        - id: comment-service
+#          uri:  http://comment-service.tweetlocal.svc.cluster.local:8082
+#          predicates:
+#            - Path=/api/v1/comment/**
+#          filters:
+#            - RewritePath=/api/v1/comment/?(?<segment>.*), /comment/$\{segment}
+#      routes:
+#        - id: comment-service
+#          uri:  http://comment-service.tweetlocal.svc.cluster.local:8082
+#          predicates:
+#            - Path=/api/v1/comment/**
+#          filters:
+#            - RewritePath=/api/v1/comment/?(?<segment>.*), /comment/$\{segment}

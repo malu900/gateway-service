@@ -1,0 +1,68 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+      #    discovery:
+#      enabled: true
+#    gateway:
+#      discovery:
+#        locator:
+#          enabled: false
+#          lower-case-service-id: true
+#      routes:
+#        - id: post-service
+#          uri: lb://post-service.postlocal.svc.cluster.local
+#          predicates:
+#            - Path=/api/v1/post/**
+#        locator:
+#          enabled: true
+##          lower
+##          lowerCaseServiceId: true
+          # url-expression: "'http://'+serviceId"
+#          lower-case-service-id: true
+
+    kubernetes:
+#      discovery:
+#        all-namespaces: true
+#        enabled: true
+      enabled: true
+      reload:
+        enabled: true
+        monitoring-config-maps: true
+        monitoring-secrets: true
+      config:
+        enabled: true
+      secrets:
+        enabled: true
+server:
+  port: 8086
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.cloud.loadbalancer: DEBUG
+    com.example.gatewayservice: DEBUG
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
+#      base-path: "/gateway/actuator"
+#  metrics:
+#    tags:
+#      application: gateway-service
+#    export:
+#      prometheus:
+#        enabled: true
+#  endpoint:
+#    prometheus:
+#      enabled: true
+#    health:
+#      probes:
+#        enabled: true
+#    restart:
+#      enabled: true
+#  health:
+#    readinessstate:
+#      enabled: true
+#    livenessstate:
+#      enabled: true
