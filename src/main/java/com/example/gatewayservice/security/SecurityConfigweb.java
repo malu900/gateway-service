@@ -9,6 +9,11 @@ import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
 import org.springframework.security.oauth2.core.OAuth2TokenValidator;
 import org.springframework.security.oauth2.jwt.*;
 import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.reactive.CorsConfigurationSource;
+import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
+
+import java.util.List;
 
 // https://auth0.com/blog/spring-boot-authorization-tutorial-secure-an-api-java/
 /// https://auth0.com/blog/spring-boot-authorization-tutorial-secure-an-api-java/#Authentication-vs--Authorization
@@ -25,9 +30,10 @@ public class SecurityConfigweb {
         http
                 .authorizeExchange()
                 .pathMatchers(HttpMethod.GET,"/api/v1/**").permitAll()
-                .pathMatchers(HttpMethod.POST,"/api/v1/comment/**").permitAll()
                 .pathMatchers(HttpMethod.GET, "/post/actuator/**", "/gateway/actuator/**","/comment/actuator/**").permitAll()
                 .anyExchange().authenticated()
+                .and()
+                .cors().configurationSource(corsConfigurationSource())
                 .and()
                 .oauth2ResourceServer()
                 .jwt();
@@ -57,19 +63,19 @@ public class SecurityConfigweb {
 //            }
 //        };
 //    }
-//    CorsConfigurationSource corsConfigurationSource() {
-//        CorsConfiguration configuration = new CorsConfiguration();
-//        configuration.setAllowedMethods(List.of(
-//                HttpMethod.GET.name(),
-//                HttpMethod.PUT.name(),
-//                HttpMethod.POST.name(),
-//                HttpMethod.DELETE.name()
-//        ));
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedMethods(List.of(
+                HttpMethod.GET.name(),
+                HttpMethod.PUT.name(),
+                HttpMethod.POST.name(),
+                HttpMethod.DELETE.name()
+        ));
 //
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", configuration.applyPermitDefaultValues());
-//        return source;
-//    }
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration.applyPermitDefaultValues());
+        return source;
+    }
 
     @Bean
     public ReactiveJwtDecoder jwtDecoder(){
