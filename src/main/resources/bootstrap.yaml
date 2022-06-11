@@ -19,28 +19,28 @@ logging:
     org.springframework.cloud.gateway: DEBUG
     org.springframework.cloud.loadbalancer: DEBUG
     com.example.gatewayservice: DEBUG
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include: "*"
-#      base-path: "/gateway/actuator"
-#  metrics:
-#    tags:
-#      application: gateway-service
-#    export:
-#      prometheus:
-#        enabled: true
-#  endpoint:
-#    prometheus:
-#      enabled: true
-#    health:
-#      probes:
-#        enabled: true
-#    restart:
-#      enabled: true
-#  health:
-#    readinessstate:
-#      enabled: true
-#    livenessstate:
-#      enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      base-path: "/gateway/actuator"
+  metrics:
+    tags:
+      application: gateway-service
+    export:
+      prometheus:
+        enabled: true
+  endpoint:
+    prometheus:
+      enabled: true
+    health:
+      probes:
+        enabled: true
+    restart:
+      enabled: true
+  health:
+    readinessstate:
+      enabled: true
+    livenessstate:
+      enabled: true
